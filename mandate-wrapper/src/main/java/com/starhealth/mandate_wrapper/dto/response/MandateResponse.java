@@ -1,4 +1,5 @@
 package com.starhealth.mandate_wrapper.dto.response;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.util.List;
@@ -6,10 +7,18 @@ import java.util.List;
 @Data
 public  class MandateResponse {
     private String status;
-    private String txn_uuid;
-    private OfferDetails offer_details;
-    private String order_id;
-    private String txn_id;
+
+    @JsonProperty("txn_uuid")
+    private String txnUuid;
+
+    @JsonProperty("offer_details")
+    private OfferDetails offerDetails;
+
+    @JsonProperty("order_id")
+    private String orderId;
+
+    @JsonProperty("txn_id")
+    private String txnId;
 
     @Data
     public static class OfferDetails{
