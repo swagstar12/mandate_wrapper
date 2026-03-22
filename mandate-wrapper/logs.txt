@@ -1,0 +1,14 @@
+2026-03-22T18:36:35.118+05:30  INFO 12268 --- [mandate-wrapper] [nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-22T18:36:35.118+05:30  INFO 12268 --- [mandate-wrapper] [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-03-22T18:36:35.118+05:30  INFO 12268 --- [mandate-wrapper] [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2026-03-22T18:36:37.215+05:30 ERROR 12268 --- [mandate-wrapper] [nio-8080-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.RuntimeException: Failed to call Juspay API: 400 Bad Request on POST request for "https://sandbox.juspay.in/txns": "{"error_message":"order.order_id cannot be null","status":"invalid_request_error","error_code":"blank","error_info":{"user_message":"Cannot process your request. Please contact support team for assistance.","fields":[{"field_name":"order","reason":"Missing field."}],"request_id":"eacfd7a1-7e91-456f-a6a2-84474cbc14cc","href":"NA","developer_message":"Missing order id. Please pass order_id in order payload.","code":"MISSING_MANDATORY_PARAMETER","category":"USER_ERROR"}}"] with root cause
+
+org.springframework.web.client.HttpClientErrorException$BadRequest: 400 Bad Request on POST request for "https://sandbox.juspay.in/txns": "{"error_message":"order.order_id cannot be null","status":"invalid_request_error","error_code":"blank","error_info":{"user_message":"Cannot process your request. Please contact support team for assistance.","fields":[{"field_name":"order","reason":"Missing field."}],"request_id":"eacfd7a1-7e91-456f-a6a2-84474cbc14cc","href":"NA","developer_message":"Missing order id. Please pass order_id in order payload.","code":"MISSING_MANDATORY_PARAMETER","category":"USER_ERROR"}}"
+	at org.springframework.web.client.HttpClientErrorException.create(HttpClientErrorException.java:106) ~[spring-web-7.0.6.jar:7.0.6]
+	at org.springframework.web.client.DefaultResponseErrorHandler.handleError(DefaultResponseErrorHandler.java:144) ~[spring-web-7.0.6.jar:7.0.6]
+	at org.springframework.web.client.DefaultResponseErrorHandler.handleError(DefaultResponseErrorHandler.java:119) ~[spring-web-7.0.6.jar:7.0.6]
+	at org.springframework.web.client.RestTemplate.handleResponse(RestTemplate.java:807) ~[spring-web-7.0.6.jar:7.0.6]
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:756) ~[spring-web-7.0.6.jar:7.0.6]
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:677) ~[spring-web-7.0.6.jar:7.0.6]
+	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:561) ~[spring-web-7.0.6.jar:7.0.6]
+	at com.starhealth.mandate_wrapper.client.JuspayClient.callMandateAPI(JuspayClient.java:79) ~[classes/:na]
