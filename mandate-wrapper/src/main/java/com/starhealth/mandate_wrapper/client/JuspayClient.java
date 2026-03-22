@@ -36,14 +36,14 @@ public class JuspayClient {
 
         CloseableHttpClient httpClient = HttpClients.custom()
                 .setConnectionManager(
-                    PoolingHttpClientConnectionManagerBuilder.create()
-                        .setSSLSocketFactory(
-                            SSLConnectionSocketFactoryBuilder.create()
-                                .setSslContext(sslContext)
-                                .setHostnameVerifier(NoopHostnameVerifier.INSTANCE)
+                        PoolingHttpClientConnectionManagerBuilder.create()
+                                .setSSLSocketFactory(
+                                        SSLConnectionSocketFactoryBuilder.create()
+                                                .setSslContext(sslContext)
+                                                .setHostnameVerifier(NoopHostnameVerifier.INSTANCE)
+                                                .build()
+                                )
                                 .build()
-                        )
-                        .build()
                 )
                 .build();
 
@@ -64,7 +64,9 @@ public class JuspayClient {
             String credentials = apiKey + ":";
             String encoded = Base64.getEncoder().encodeToString(credentials.getBytes());
             headers.set("Authorization", "Basic " + encoded);
-
+            System.out.println("DEBUG orderId =" + request.getOrderId());
+            System.out.println("DEBUG customerId =" + request.getCustomerId());
+            System.out.println("DEBUG mandateId =" + request.getMandateId());
             MultiValueMap<String, String> formBody = new LinkedMultiValueMap<>();
             if (request.getOrderId() != null)       formBody.add("order_id", request.getOrderId());
             if (request.getAmount() != null)         formBody.add("amount", request.getAmount());
